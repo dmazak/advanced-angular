@@ -1,0 +1,70 @@
+{
+  "css.lint.unknownAtRules": "ignore",
+  "editor.linkedEditing": true,
+  "workbench.editor.wrapTabs": true,
+  "workbench.editor.decorations.colors": true,
+  "workbench.editor.decorations.badges": true,
+  "editor.guides.indentation": true,
+  "breadcrumbs.enabled": true,
+  "html.format.wrapAttributes": "force-aligned",
+  "explorer.openEditors.visible": 0,
+  "editor.formatOnSave": true,
+  "files.autoSave": "onFocusChange",
+  "typescript.check.npmIsInstalled": true,
+  "workbench.editor.labelFormat": "medium",
+  "editor.minimap.enabled": false,
+
+  "eslint.rules.customizations": [
+    {
+      "rule": "*",
+      "severity": "warn"
+    }
+  ],
+  "workbench.colorCustomizations": {
+    "editorIndentGuide.activeBackground": "#ff0000"
+  },
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": false,
+    "source.fixAll": true,
+    "eslint.autoFixOnSave": true /* already set with source.fixAll, but here to document */
+  },
+  "typescript.updateImportsOnFileMove.enabled": "always",
+
+  "explorer.confirmDelete": false,
+  "eslint.quiet": true,
+  "terminal.integrated.fontFamily": "'FiraCode NF Retina'",
+  "editor.detectIndentation": false,
+  "eslint.options": {
+    "extensions": [".ts", ".html"]
+  },
+  "eslint.probe": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "html",
+    "markdown"
+  ],
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": true
+    },
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
+}
