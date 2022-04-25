@@ -7,6 +7,7 @@ import { EnvironmentModule } from 'src/app/libs/environment/environment.module';
 import { OnboardComponent } from './components/onboard/onboard.component';
 import { UsersDataService } from './services/users-data.service';
 import { UsersComponent } from './users.component';
+import { AsyncCheckValidators } from './validators/async-check.validator';
 const routes: Routes = [
   {
     // /users
@@ -31,6 +32,6 @@ const routes: Routes = [
     ReactiveFormsModule,
     EnvironmentModule,
   ],
-  providers: [UsersDataService],
+  providers: [UsersDataService, AsyncCheckValidators],
 })
 export class UsersModule {}

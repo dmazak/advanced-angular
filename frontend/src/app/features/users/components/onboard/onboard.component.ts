@@ -5,6 +5,7 @@ import {
   noSpaceValidator,
   passwordsMustMatchValidator,
 } from '../../validators';
+import { AsyncCheckValidators } from '../../validators/async-check.validator';
 
 @Component({
   selector: 'app-onboard',
@@ -24,13 +25,17 @@ export class OnboardComponent implements OnInit {
           Validators.email,
           disallowedDomainValidator('geico.com'),
         ],
+        [this.asyncValidators.canUseEmailAddressValidator()],
       ],
       password1: ['', [Validators.required, Validators.minLength(8)]],
       password2: ['', [Validators.required, Validators.minLength(8)]],
     },
     { validators: [passwordsMustMatchValidator] }
   );
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private asyncValidators: AsyncCheckValidators
+  ) {}
   ngOnInit(): void {
     //throw new Error('Method not implemented.');
   }

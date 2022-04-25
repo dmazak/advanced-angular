@@ -70,6 +70,9 @@
         <p *ngIf="email?.hasError('email')">
           Can you make sure that is a real email address, please?
         </p>
+        <p *ngIf="email?.hasError('canUseEmailAddress')">
+          That email address is already in use. Log in?
+        </p>
       </div>
     </div>
   </fieldset>
