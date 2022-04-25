@@ -1,3 +1,62 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  @apply bg-slate-50;
+}
+
+.card {
+  @apply mt-3 bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4;
+}
+
+form {
+  @apply mt-3 bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4;
+}
+.form-group {
+  @apply mb-4;
+}
+
+.form-group label {
+  @apply block text-gray-700 text-sm font-bold mb-2;
+}
+
+.form-group input {
+  @apply shadow appearance-none border border-slate-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight;
+}
+
+.form-group input:focus {
+}
+
+.btn {
+  @apply bg-blue-500 text-white font-bold py-2 px-4 rounded ml-3;
+}
+
+.btn:hover {
+  @apply bg-blue-700;
+}
+form fieldset {
+  @apply border-2 p-2 mb-3 pr-6;
+}
+form fieldset legend {
+  @apply p-3 font-bold;
+}
+form fieldset .form-group {
+  @apply pl-4;
+}
+
+form .form-header {
+  @apply font-black text-xl;
+}
+
+form .described-by {
+  @apply font-light text-slate-700 text-sm pl-4;
+}
+
+form .field-errors {
+  @apply text-red-700 bg-yellow-100 p-5 font-bold text-sm rounded-md mt-3;
+}
+
+form .ng-invalid:not(.ng-untouched) {
+  @apply bg-yellow-100;
+}

@@ -1,0 +1,144 @@
+<form [formGroup]="form" (ngSubmit)="createAccount()" class="">
+  <div class="form-header">
+    <p>Create an Account. It's Free!</p>
+  </div>
+  <fieldset>
+    <legend>About You</legend>
+    <div class="form-group">
+      <label for="firstName">Your First Name</label>
+      <input
+        aria-describedby="firstname-description"
+        autocomplete="off"
+        id="firstName"
+        type="text"
+        class="form-input"
+        formControlName="firstName"
+      />
+      <div class="described-by" id="firstname-description">
+        Your first name.
+      </div>
+      <div
+        class="field-errors"
+        *ngIf="firstName?.errors && (firstName?.touched || firstName?.dirty)"
+      >
+        <p *ngIf="firstName?.hasError('required')">We need your first name.</p>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="lastName">Your Last Name</label>
+      <input
+        aria-describedby="lastname-description"
+        autocomplete="off"
+        id="lastName"
+        type="text"
+        class="form-input"
+        formControlName="lastName"
+      />
+      <div class="described-by" id="lastname-description">Your last name.</div>
+      <div
+        class="field-errors"
+        *ngIf="lastName?.errors && (lastName?.touched || lastName?.dirty)"
+      >
+        <p *ngIf="lastName?.hasError('required')">We need your last name.</p>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="email">What is your Email Address</label>
+      <input
+        aria-describedby="email-description"
+        id="email"
+        type="email"
+        class="form-input"
+        formControlName="email"
+        autocomplete="off"
+      />
+      <div class="described-by" id="email-description">
+        A good email address. We won't send you email, it's just if you need to
+        reset your password.
+      </div>
+      <div
+        class="field-errors"
+        *ngIf="email?.errors && (email?.touched || email?.dirty)"
+      >
+        <p *ngIf="email?.hasError('required')">
+          Give us an email. Promise we won't spam you.
+        </p>
+        <p *ngIf="email?.hasError('email')">
+          Can you make sure that is a real email address, please?
+        </p>
+      </div>
+    </div>
+  </fieldset>
+  <fieldset>
+    <legend>Your Login Information</legend>
+    <div class="form-group">
+      <label for="username">Pick a Username</label>
+      <input
+        aria-describedby="username-description"
+        autocomplete="off"
+        id="username"
+        type="text"
+        class="form-input"
+        formControlName="username"
+      />
+      <div class="described-by" id="username-description">
+        The name you want to use to log in. Must be one word, no spaces.
+      </div>
+      <div
+        class="field-errors"
+        *ngIf="username?.errors && (username?.touched || username?.dirty)"
+      >
+        <p *ngIf="username?.hasError('required')">We need a Username</p>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password1">Choose a Password</label>
+      <input
+        aria-describedby="password-description"
+        autocomplete="new-password"
+        id="password1"
+        type="password"
+        class="form-input"
+        formControlName="password1"
+      />
+      <div
+        class="field-errors"
+        *ngIf="password1?.errors && (password1?.touched || password1?.dirty)"
+      >
+        <p *ngIf="password1?.hasError('required')">
+          We need a password. You <em>are</em> using a password manager, right?
+        </p>
+        <p *ngIf="password1?.hasError('minlength')">
+          Make it at least 8 characters please.
+        </p>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="password2">Confirm your Password</label>
+      <input
+        aria-describedby="password-description"
+        autocomplete="new-password"
+        id="password2"
+        type="password"
+        class="form-input"
+        formControlName="password2"
+      />
+      <div
+        class="field-errors"
+        *ngIf="password2?.errors && (password2?.touched || password2?.dirty)"
+      >
+        <p *ngIf="password2?.hasError('required')">
+          We need a password. You <em>are</em> using a password manager, right?
+        </p>
+        <p *ngIf="password2?.hasError('minlength')">
+          Make it at least 8 characters please.
+        </p>
+      </div>
+    </div>
+    <div class="described-by" id="password-description">
+      Choose a good, strong password. At least 8 characters.
+    </div>
+  </fieldset>
+  <button class="btn" type="submit">Create My Account</button>
+</form>

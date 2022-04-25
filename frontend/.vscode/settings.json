@@ -1,5 +1,5 @@
 {
-  "css.lint.unknownAtRules": "ignore",
+    "css.lint.unknownAtRules": "ignore",
   "editor.linkedEditing": true,
   "workbench.editor.wrapTabs": true,
   "workbench.editor.decorations.colors": true,
@@ -13,6 +13,7 @@
   "typescript.check.npmIsInstalled": true,
   "workbench.editor.labelFormat": "medium",
   "editor.minimap.enabled": false,
+ 
 
   "eslint.rules.customizations": [
     {
