@@ -19,7 +19,7 @@ const initialState: AuthState = {
 
 export const reducer = createReducer(
   initialState,
-  on(AuthDocuments.userLoggedIn, (_, a) => ({
+  on(AuthDocuments.user, (_, a) => ({
     user: a.payload,
   }))
 );

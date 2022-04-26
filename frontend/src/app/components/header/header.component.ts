@@ -20,4 +20,8 @@ export class HeaderComponent implements OnInit {
   logIn() {
     this.store.dispatch(AuthEvents.loginRequested());
   }
+
+  logOut() {
+    this.store.dispatch(AuthEvents.logoutRequested());
+  }
 }

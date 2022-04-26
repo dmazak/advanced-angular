@@ -6,6 +6,15 @@ import { AuthEvents } from '../actions/auth.actions';
 
 @Injectable()
 export class AuthEffects {
+  logout$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(AuthEvents.logoutRequested),
+        tap(() => this.oidcService.logoff())
+      );
+    },
+    { dispatch: false }
+  );
   login$ = createEffect(
     () => {
       return this.actions$.pipe(

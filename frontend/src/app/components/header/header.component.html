@@ -22,5 +22,12 @@
     >
       Log In, Yo!
     </button>
+    <button
+      *ngIf="(userLoggedIn$ | async) === true"
+      (click)="logOut()"
+      class="link-button"
+    >
+      Log Out
+    </button>
   </nav>
 </header>

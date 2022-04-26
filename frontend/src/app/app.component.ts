@@ -27,9 +27,9 @@ export class AppComponent implements OnInit {
           userData: UserState;
         }) => {
           if (isAuthenticated) {
-            this.store.dispatch(
-              AuthDocuments.userLoggedIn({ payload: userData })
-            );
+            this.store.dispatch(AuthDocuments.user({ payload: userData }));
+          } else {
+            this.store.dispatch(AuthDocuments.user({ payload: null }));
           }
         }
       );
