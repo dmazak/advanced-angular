@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { AppAuthModule } from './app-auth.module';
 import { AppNgrxModule } from './app-ngrx.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,7 +10,13 @@ import { UsersModule } from './features/users/users.module';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, DashboardComponent],
-  imports: [BrowserModule, AppRoutingModule, AppNgrxModule, UsersModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    AppNgrxModule,
+    UsersModule,
+    AppAuthModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
