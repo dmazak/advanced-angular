@@ -100,6 +100,9 @@
         <p *ngIf="username?.hasError('noSpaces')">
           User names cannot have spaces in them.
         </p>
+        <p *ngIf="username?.hasError('canUseUsername')">
+          Sorry, that username is already in use! Log in instead?
+        </p>
       </div>
     </div>
 

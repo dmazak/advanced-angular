@@ -17,7 +17,11 @@ export class OnboardComponent implements OnInit {
     {
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
-      username: ['', [Validators.required, noSpaceValidator]],
+      username: [
+        '',
+        [Validators.required, noSpaceValidator],
+        [this.asyncValidators.canUseUsernameValidator()],
+      ],
       email: [
         '',
         [

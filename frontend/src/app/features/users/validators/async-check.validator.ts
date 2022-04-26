@@ -23,4 +23,15 @@ export class AsyncCheckValidators {
         first()
       );
   }
+
+  canUseUsernameValidator(): AsyncValidatorFn {
+    return (control) =>
+      control.valueChanges.pipe(
+        debounceTime(467),
+        distinctUntilChanged(),
+        switchMap((value) => this.service.isUsernameAvailable(value)),
+        map((available) => (available ? null : { canUseUsername: true })),
+        first()
+      );
+  }
 }
