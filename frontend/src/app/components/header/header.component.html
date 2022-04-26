@@ -2,8 +2,9 @@
   <div class="flex items-center">
     <p><strong>Advanced Angular</strong></p>
   </div>
-  <nav>
+  <nav *ngrxLet="userLoggedIn$ as loggedIn">
     <a
+      *ngIf="loggedIn === false"
       class="link-button"
       [routerLinkActive]="['active']"
       [routerLink]="['users', 'onboard']"
@@ -15,18 +16,10 @@
       [routerLink]="['dashboard']"
       >Dashboard</a
     >
-    <button
-      *ngIf="(userLoggedIn$ | async) === false"
-      (click)="logIn()"
-      class="link-button"
-    >
+    <button *ngIf="loggedIn === false" (click)="logIn()" class="link-button">
       Log In, Yo!
     </button>
-    <button
-      *ngIf="(userLoggedIn$ | async) === true"
-      (click)="logOut()"
-      class="link-button"
-    >
+    <button *ngIf="loggedIn" (click)="logOut()" class="link-button">
       Log Out
     </button>
   </nav>

@@ -1,5 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { debounceTime, Subscription, tap } from 'rxjs';
+import { selectOnBoardFormData } from '../../state';
+import { OnboardFormDocuments } from '../../state/actions/onboard-form.actions';
+import { TemporaryFormState } from '../../state/reducers/onboard-form.reducer';
 import {
   disallowedDomainValidator,
   noSpaceValidator,
@@ -12,7 +17,8 @@ import { AsyncCheckValidators } from '../../validators/async-check.validator';
   templateUrl: './onboard.component.html',
   styleUrls: ['./onboard.component.css'],
 })
-export class OnboardComponent implements OnInit {
+export class OnboardComponent implements OnInit, OnDestroy {
+  subscriptions: Subscription[] = [];
   form = this.formBuilder.group(
     {
       firstName: ['', [Validators.required]],
@@ -38,10 +44,41 @@ export class OnboardComponent implements OnInit {
   );
   constructor(
     private formBuilder: FormBuilder,
-    private asyncValidators: AsyncCheckValidators
+    private asyncValidators: AsyncCheckValidators,
+    private store: Store
   ) {}
   ngOnInit(): void {
-    //throw new Error('Method not implemented.');
+    // TODO: There is a "bug" here. We'll get to it.
+
+    let userData: TemporaryFormState = {};
+    const userObservable$ = this.store.select(selectOnBoardFormData).pipe(
+      tap((data) => {
+        userData = data;
+      })
+    );
+    let s1 = userObservable$.subscribe(); // ## BUG 2
+    this.subscriptions.push(s1);
+
+    this.firstName?.setValue(userData?.firstName || '');
+    this.lastName?.setValue(userData?.lastName || '');
+    this.email?.setValue(userData?.email || '');
+    this.username?.setValue(userData?.userName || '');
+    this.password1?.setValue(userData?.password1 || '');
+    this.password2?.setValue(userData?.password2 || '');
+
+    this.form.valueChanges
+      .pipe(
+        debounceTime(450),
+        tap((changes) =>
+          this.store.dispatch(
+            OnboardFormDocuments.onboardForm({ payload: changes })
+          )
+        )
+      )
+      .subscribe();
+  }
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((s) => s.unsubscribe());
   }
 
   get firstName() {

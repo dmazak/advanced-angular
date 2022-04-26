@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { ReactiveComponentModule } from '@ngrx/component';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreModule } from '@ngrx/store';
@@ -10,11 +11,12 @@ import { CustomSerializer } from './state/router-sanitizer';
   imports: [
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot([]),
+    ReactiveComponentModule,
     StoreRouterConnectingModule.forRoot({
       serializer: CustomSerializer,
     }),
     externalModules,
   ],
-  exports: [],
+  exports: [ReactiveComponentModule],
 })
 export class AppNgrxModule {}
