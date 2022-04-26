@@ -24,3 +24,8 @@ export const selectUserLoggedIn = createSelector(
   selectAuthBranch,
   fromAuth.selectUserLoggedIn
 );
+
+export const selectUserNotLoggedIn = createSelector(
+  selectUserLoggedIn,
+  (loggedIn) => !loggedIn
+);

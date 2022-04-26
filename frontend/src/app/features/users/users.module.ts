@@ -7,6 +7,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { EnvironmentModule } from 'src/app/libs/environment/environment.module';
 import { OnboardComponent } from './components/onboard/onboard.component';
+import { MustBeAuthenticatedGuard } from './guards/authenticated.guard';
 import { UsersDataService } from './services/users-data.service';
 import { featureName, reducers } from './state';
 import { UsersComponent } from './users.component';
@@ -21,6 +22,7 @@ const routes: Routes = [
         // users/onboard
         path: 'onboard',
         component: OnboardComponent,
+        canActivate: [MustBeAuthenticatedGuard],
       },
     ],
   },
@@ -37,6 +39,6 @@ const routes: Routes = [
     EffectsModule.forFeature([]),
     EnvironmentModule,
   ],
-  providers: [UsersDataService, AsyncCheckValidators],
+  providers: [UsersDataService, AsyncCheckValidators, MustBeAuthenticatedGuard],
 })
 export class UsersModule {}

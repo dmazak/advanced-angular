@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HeaderComponent } from './components/header/header.component';
+import { TodosModule } from './features/todos/todos.module';
 import { UsersModule } from './features/users/users.module';
 import { IdentityModule } from './libs/auth/identity.module';
 
@@ -18,6 +19,7 @@ import { IdentityModule } from './libs/auth/identity.module';
     UsersModule,
     AppAuthModule,
     IdentityModule,
+    TodosModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
