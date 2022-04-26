@@ -15,6 +15,12 @@
       [routerLink]="['dashboard']"
       >Dashboard</a
     >
-    <button (click)="logIn()" class="link-button">Log In, Yo!</button>
+    <button
+      *ngIf="(userLoggedIn$ | async) === false"
+      (click)="logIn()"
+      class="link-button"
+    >
+      Log In, Yo!
+    </button>
   </nav>
 </header>

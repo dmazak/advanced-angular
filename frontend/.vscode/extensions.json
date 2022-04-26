@@ -6,6 +6,7 @@
     "ecmel.vscode-html-css",
     "humao.rest-client",
     "esbenp.prettier-vscode",
-    "bradlc.vscode-tailwindcss"
+    "bradlc.vscode-tailwindcss",
+    "rhalaly.scope-to-this"
   ]
 }

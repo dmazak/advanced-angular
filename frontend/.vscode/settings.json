@@ -1,5 +1,5 @@
 {
-    "css.lint.unknownAtRules": "ignore",
+  "css.lint.unknownAtRules": "ignore",
   "editor.linkedEditing": true,
   "workbench.editor.wrapTabs": true,
   "workbench.editor.decorations.colors": true,
@@ -13,7 +13,6 @@
   "typescript.check.npmIsInstalled": true,
   "workbench.editor.labelFormat": "medium",
   "editor.minimap.enabled": false,
- 
 
   "eslint.rules.customizations": [
     {
@@ -67,5 +66,13 @@
   },
   "[markdown]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true
   }
 }

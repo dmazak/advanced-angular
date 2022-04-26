@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HeaderComponent } from './components/header/header.component';
 import { UsersModule } from './features/users/users.module';
+import { IdentityModule } from './libs/auth/identity.module';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, DashboardComponent],
@@ -16,6 +17,7 @@ import { UsersModule } from './features/users/users.module';
     AppNgrxModule,
     UsersModule,
     AppAuthModule,
+    IdentityModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

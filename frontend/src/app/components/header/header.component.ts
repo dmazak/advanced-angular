@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { OidcSecurityService } from 'angular-auth-oidc-client';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { selectUserLoggedIn } from 'src/app/libs/auth/state';
+import { AuthEvents } from 'src/app/libs/auth/state/actions/auth.actions';
 
 @Component({
   selector: 'app-header',
@@ -7,11 +10,14 @@ import { OidcSecurityService } from 'angular-auth-oidc-client';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-  constructor(private oidcSecurityService: OidcSecurityService) {}
+  userLoggedIn$!: Observable<boolean>;
+  constructor(private store: Store) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.userLoggedIn$ = this.store.select(selectUserLoggedIn);
+  }
 
   logIn() {
-    this.oidcSecurityService.authorize();
+    this.store.dispatch(AuthEvents.loginRequested());
   }
 }
