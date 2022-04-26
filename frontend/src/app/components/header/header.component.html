@@ -1,6 +1,6 @@
 <header class="flex justify-between item-center px-4 py-2 bg-blue-100">
   <div class="flex items-center">
-    <p><strong>Advanced Angular</strong></p>
+    <p data-header-title><strong>Advanced Angular</strong></p>
   </div>
   <nav *ngrxLet="userLoggedIn$ as loggedIn">
     <a
@@ -12,6 +12,7 @@
     >
     <a
       class="link-button"
+      data-todos-link
       [routerLinkActive]="['active']"
       [routerLink]="['todos']"
       >Your Todo List</a
