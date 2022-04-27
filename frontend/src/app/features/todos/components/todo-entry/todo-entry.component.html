@@ -1,7 +1,7 @@
-<form data-item-entry-form>
+<form data-item-entry-form [formGroup]="form" (ngSubmit)="submit(des)">
   <div class="form-group">
     <label for="Item"></label>
-    <input class="form-input" id="item" />
+    <input class="form-input" id="item" #des formControlName="description" />
   </div>
   <button class="btn" type="submit">Add Item</button>
 </form>
