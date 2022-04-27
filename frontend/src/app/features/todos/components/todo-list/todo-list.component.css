@@ -1,0 +1,11 @@
+button {
+  @apply bg-red-700 text-white p-1 rounded-md w-8 mr-4;
+}
+
+button:hover {
+  @apply bg-red-900;
+}
+
+li {
+  @apply p-2 border-y-2 m-3 border-gray-400;
+}

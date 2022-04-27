@@ -1,12 +1,14 @@
-<div>
-  <div></div>
-  <div>
-    <ul data-todos-list>
-      <li><button>X</button><span>Buy Shoes For Henry</span></li>
-      <li><button>X</button><span>Clean Garage</span></li>
-      <li>
-        <span class="completed">Rake Yard</span>
-      </li>
-    </ul>
-  </div>
+<div class="card">
+  <app-todo-entry></app-todo-entry>
+
+  <app-todo-filter></app-todo-filter>
+
+  <app-todo-list></app-todo-list>
+  <button
+    class="p-2 text-sm font-medium text-white bg-red-700 rounded-md"
+    data-clear-completed-items
+  >
+    Clear Completed Items
+  </button>
 </div>
+<!-- <pre>{{ model$ | async | json }}</pre> -->
