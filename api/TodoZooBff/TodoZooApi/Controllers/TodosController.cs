@@ -42,7 +42,8 @@ public class TodosController : ControllerBase
     {
         var sub = User.GetSub()!;
         TodosUpdateType response = await _todoRepository.MarkTodoCompleteAsync(request, sub);
-        await SendWsMessage("itemCompleted", request);
+        var result = request with { completed = true };
+        await SendWsMessage("itemCompleted", result);
         return response switch
         {
             TodosUpdateType.Success => NoContent(),
