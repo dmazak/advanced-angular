@@ -1,3 +1,4 @@
+
 <form [formGroup]="form" (ngSubmit)="createAccount()" class="">
   <div class="form-header">
     <p>Create an Account. It's Free!</p>
@@ -83,24 +84,24 @@
       <input
         aria-describedby="username-description"
         autocomplete="off"
-        id="username"
+        id="userName"
         type="text"
         class="form-input"
-        formControlName="username"
+        formControlName="userName"
       />
       <div class="described-by" id="username-description">
         The name you want to use to log in. Must be one word, no spaces.
       </div>
       <div
         class="field-errors"
-        *ngIf="username?.errors && (username?.touched || username?.dirty)"
+        *ngIf="userName?.errors && (userName?.touched || userName?.dirty)"
       >
-        <p *ngIf="username?.hasError('required')">We need a Username</p>
+        <p *ngIf="userName?.hasError('required')">We need a Username</p>
 
-        <p *ngIf="username?.hasError('noSpaces')">
+        <p *ngIf="userName?.hasError('noSpaces')">
           User names cannot have spaces in them.
         </p>
-        <p *ngIf="username?.hasError('canUseUsername')">
+        <p *ngIf="userName?.hasError('canUseUsername')">
           Sorry, that username is already in use! Log in instead?
         </p>
       </div>

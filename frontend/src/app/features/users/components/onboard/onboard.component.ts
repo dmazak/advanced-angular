@@ -3,7 +3,10 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { debounceTime, Subscription, tap } from 'rxjs';
 import { selectOnBoardFormData } from '../../state';
-import { OnboardFormDocuments } from '../../state/actions/onboard-form.actions';
+import {
+  OnboardFormDocuments,
+  OnboardFormEvents,
+} from '../../state/actions/onboard-form.actions';
 import { TemporaryFormState } from '../../state/reducers/onboard-form.reducer';
 import {
   disallowedDomainValidator,
@@ -23,7 +26,7 @@ export class OnboardComponent implements OnInit, OnDestroy {
     {
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
-      username: [
+      userName: [
         '',
         [Validators.required, noSpaceValidator],
         [this.asyncValidators.canUseUsernameValidator()],
@@ -62,7 +65,7 @@ export class OnboardComponent implements OnInit, OnDestroy {
     this.firstName?.setValue(userData?.firstName || '');
     this.lastName?.setValue(userData?.lastName || '');
     this.email?.setValue(userData?.email || '');
-    this.username?.setValue(userData?.userName || '');
+    this.userName?.setValue(userData?.userName || '');
     this.password1?.setValue(userData?.password1 || '');
     this.password2?.setValue(userData?.password2 || '');
 
@@ -87,8 +90,8 @@ export class OnboardComponent implements OnInit, OnDestroy {
   get lastName() {
     return this.form.get('lastName');
   }
-  get username() {
-    return this.form.get('username');
+  get userName() {
+    return this.form.get('userName');
   }
   get email() {
     return this.form.get('email');
@@ -102,6 +105,7 @@ export class OnboardComponent implements OnInit, OnDestroy {
 
   createAccount() {
     if (this.form.valid) {
+      this.store.dispatch(OnboardFormEvents.accountCreationRequested());
     }
   }
 }

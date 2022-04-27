@@ -24,3 +24,14 @@ export const selectOnBoardFormData = createSelector(
   selectOnBoardFormBranch,
   (b) => b
 );
+
+export const selectOnBoardUserForPost = createSelector(
+  selectOnBoardFormData,
+  (user) => ({
+    firstName: user.firstName,
+    lastName: user.lastName,
+    email: user.email,
+    userName: user.userName,
+    password: user.password1,
+  })
+);

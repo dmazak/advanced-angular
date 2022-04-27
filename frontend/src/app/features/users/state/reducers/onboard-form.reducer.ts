@@ -17,5 +17,5 @@ const initialState: TemporaryFormState = {};
 export const reducer = createReducer(
   initialState,
   on(OnboardFormEvents.formSubmitted, () => initialState),
-  on(OnboardFormDocuments.onboardForm, (_, a) => a.payload)
+  on(OnboardFormDocuments.onboardForm, (_, a) => a.payload ?? initialState)
 );
