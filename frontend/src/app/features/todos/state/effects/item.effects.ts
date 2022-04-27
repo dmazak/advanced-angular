@@ -1,9 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { Actions, concatLatestFrom, createEffect, ofType } from '@ngrx/effects';
 import { routerNavigatedAction } from '@ngrx/router-store';
+import { Store } from '@ngrx/store';
 import { catchError, concatMap, filter, map, of, switchMap } from 'rxjs';
 import { EnvironmentService } from 'src/app/libs/environment/environment.service';
+import { selectTodoItemFromId } from '..';
 import {
   ItemsCommands,
   ItemsDocuments,
@@ -15,6 +17,23 @@ import { TodoItemEntity } from '../reducers/items.reducer';
 export class ItemEffects {
   private readonly url: string;
 
+  markTodoComplete$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(ItemsEvents.todoItemMarkedComplete),
+        concatLatestFrom((a) =>
+          this.store.select(selectTodoItemFromId(a.payload))
+        ),
+        concatMap(([_, item]) =>
+          this.client.post(this.url + 'completed/', item).pipe(
+            map(() => ({ ...item, completed: true } as TodoItemEntity)),
+            map((payload) => ItemsDocuments.todo({ payload }))
+          )
+        )
+      );
+    },
+    { dispatch: true }
+  );
   // add  the todo...
   addTodo$ = createEffect(() => {
     return this.actions$.pipe(
@@ -56,7 +75,8 @@ export class ItemEffects {
   constructor(
     private actions$: Actions,
     private client: HttpClient,
-    environments: EnvironmentService
+    environments: EnvironmentService,
+    private store: Store
   ) {
     this.url = environments.bffUrl + 'todos/';
   }

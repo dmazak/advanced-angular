@@ -9,9 +9,15 @@ const todoItemCreated = createAction(
   '[todos] todo item created',
   props<{ payload: string }>()
 );
+
+const todoItemMarkedComplete = createAction(
+  '[todos] todo item marked complete',
+  props<{ payload: string }>()
+);
 export const ItemsEvents = {
   loadingTodoItemsFailed,
   todoItemCreated,
+  todoItemMarkedComplete,
 };
 
 const loadTodos = createAction('[todos] load todos');

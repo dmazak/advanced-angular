@@ -20,7 +20,8 @@ export const reducer = createReducer(
   on(ItemsDocuments.todo, (s, a) => adapter.upsertOne(a.payload, s))
 );
 
-const { selectAll, selectTotal } = adapter.getSelectors();
+const { selectAll, selectTotal, selectEntities } = adapter.getSelectors();
 
-export const selectAllTodoItemEtities = selectAll;
+export const selectAllTodoItemEntities = selectAll;
 export const selectTotalNumberOfTodoItems = selectTotal;
+export const selectTodoItemDictionary = selectEntities;

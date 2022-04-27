@@ -1,3 +1,5 @@
+import { FilterOptions } from '../state/reducers/items-filter.reducer';
+
 export interface TodosViewModel {
   items: TodoItemViewModel[];
   filterButtons: FilterButtonsViewModel;
@@ -9,7 +11,7 @@ export interface FilterButtonsViewModel {
   total: number;
   completed: number;
   incomplete: number;
-  showing: 'all' | 'incomplete' | 'complete';
+  showing: FilterOptions;
 }
 
 export interface TodoItemViewModel {

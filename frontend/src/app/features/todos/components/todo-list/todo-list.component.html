@@ -4,7 +4,8 @@
 
 <ul data-todos-list *ngIf="model.length !== 0">
   <li *ngFor="let item of model; index as idx" [attr.data-list-item]="idx">
-    <button *ngIf="item.completed == false">X</button
+    <button *ngIf="item.completed == false" (click)="markCompleted(item.id)">
+      X</button
     ><span [ngClass]="{ completed: item.completed }">{{
       item.description
     }}</span>
