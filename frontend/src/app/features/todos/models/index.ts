@@ -5,14 +5,14 @@ export interface TodosViewModel {
   dataLoaded: boolean;
 }
 
-interface FilterButtonsViewModel {
+export interface FilterButtonsViewModel {
   total: number;
   completed: number;
   incomplete: number;
   showing: 'all' | 'incomplete' | 'complete';
 }
 
-interface TodoItemViewModel {
+export interface TodoItemViewModel {
   id: string;
   description: string;
   completed: boolean;

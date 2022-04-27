@@ -4,22 +4,41 @@ import {
   createSelector,
 } from '@ngrx/store';
 import * as fromModels from '../models';
+import * as fromItems from './reducers/items.reducer';
 export const featureName = 'featureTodos';
-export interface TodosState {}
+export interface TodosState {
+  items: fromItems.ItemsState;
+}
 
-export const reducers: ActionReducerMap<TodosState> = {};
+export const reducers: ActionReducerMap<TodosState> = {
+  items: fromItems.reducer,
+};
 
 // 1. Feature Selector
 const selectFeature = createFeatureSelector<TodosState>(featureName);
 // 2. Selector per "branch" of this feature
-
+const selectItemsBranch = createSelector(selectFeature, (f) => f.items);
 // 3. Any helpers (optional)
 
+const selectTodoItemEntities = createSelector(
+  selectItemsBranch,
+  fromItems.selectAllTodoItemEtities
+);
+
+const selectNumberOfTodoItems = createSelector(
+  selectItemsBranch,
+  fromItems.selectTotalNumberOfTodoItems
+);
+
+const selectTodoItemViewModels = createSelector(
+  selectTodoItemEntities,
+  (items) => items as fromModels.TodoItemViewModel[]
+);
 // 4. What the component needs (Models)
 
 export const selectTodosViewModel = createSelector(
-  selectFeature,
-  (f) =>
+  selectTodoItemViewModels,
+  (items) =>
     ({
       clearCompletedEnabled: true,
       dataLoaded: true,
@@ -29,10 +48,6 @@ export const selectTodosViewModel = createSelector(
         total: 3,
         showing: 'all',
       },
-      items: [
-        { id: '1', description: 'Get Shoes for Henry', completed: false },
-        { id: '2', description: 'Clean Garage', completed: false },
-        { id: '99', description: 'Mow Lawn', completed: true },
-      ],
+      items,
     } as fromModels.TodosViewModel)
 );

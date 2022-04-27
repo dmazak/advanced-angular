@@ -7,7 +7,7 @@ import { TodosComponent } from './todos.component';
 import { TodoListComponent } from './components/todo-list/todo-list.component';
 import { TodoFilterComponent } from './components/todo-filter/todo-filter.component';
 import { TodoEntryComponent } from './components/todo-entry/todo-entry.component';
-
+import { ReactiveComponentModule } from '@ngrx/component';
 const routes: Routes = [
   {
     path: 'todos',
@@ -16,10 +16,16 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [TodosComponent, TodoListComponent, TodoFilterComponent, TodoEntryComponent],
+  declarations: [
+    TodosComponent,
+    TodoListComponent,
+    TodoFilterComponent,
+    TodoEntryComponent,
+  ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
+    ReactiveComponentModule,
     StoreModule.forFeature(featureName, reducers),
   ],
   exports: [TodosComponent],

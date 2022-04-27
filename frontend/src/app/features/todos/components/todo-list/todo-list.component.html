@@ -1,7 +1,8 @@
 <ul data-todos-list>
-  <li><button>X</button><span>Buy Shoes For Henry</span></li>
-  <li><button>X</button><span>Clean Garage</span></li>
-  <li>
-    <span class="completed">Rake Yard</span>
+  <li *ngFor="let item of model; index as idx" [attr.data-list-item]="idx">
+    <button *ngIf="item.completed == false">X</button
+    ><span [ngClass]="{ completed: item.completed }">{{
+      item.description
+    }}</span>
   </li>
 </ul>

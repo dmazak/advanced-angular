@@ -1,10 +1,11 @@
-<div class="card">
+<div class="card" *ngrxLet="model$ as model">
   <app-todo-entry></app-todo-entry>
 
-  <app-todo-filter></app-todo-filter>
+  <app-todo-filter [model]="model.filterButtons"></app-todo-filter>
 
-  <app-todo-list></app-todo-list>
+  <app-todo-list [model]="model.items"></app-todo-list>
   <button
+    *ngIf="model.clearCompletedEnabled"
     class="p-2 text-sm font-medium text-white bg-red-700 rounded-md"
     data-clear-completed-items
   >
