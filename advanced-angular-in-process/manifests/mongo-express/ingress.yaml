@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: mongo-express-ingress
+  labels:
+    name: mongo-express-ingress
+spec:
+  rules:
+    - host: admin.todo-zoo.com
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: mongo-express-service
+                port:
+                  number: 80

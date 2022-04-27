@@ -73,6 +73,25 @@
     "**/.hg": true,
     "**/CVS": true,
     "**/.DS_Store": true,
-    "**/Thumbs.db": true
+    "**/Thumbs.db": true,
+    "[!s]*/**": true,
+    "s[!r]*/**": true,
+    "sr[!c]*/**": true,
+    "src/[!a]*/**": true,
+    "src/a[!p]*/**": true,
+    "src/ap[!p]*/**": true,
+    "src/app/[!f]*/**": true,
+    "src/app/f[!e]*/**": true,
+    "src/app/fe[!a]*/**": true,
+    "src/app/fea[!t]*/**": true,
+    "src/app/feat[!u]*/**": true,
+    "src/app/featu[!r]*/**": true,
+    "src/app/featur[!e]*/**": true,
+    "src/app/feature[!s]*/**": true,
+    "src/app/features/[!t]*/**": true,
+    "src/app/features/t[!o]*/**": true,
+    "src/app/features/to[!d]*/**": true,
+    "src/app/features/tod[!o]*/**": true,
+    "src/app/features/todo[!s]*/**": true
   }
 }

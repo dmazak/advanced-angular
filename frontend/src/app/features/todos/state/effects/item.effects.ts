@@ -3,9 +3,11 @@ import { Injectable } from '@angular/core';
 import { Actions, concatLatestFrom, createEffect, ofType } from '@ngrx/effects';
 import { routerNavigatedAction } from '@ngrx/router-store';
 import { Store } from '@ngrx/store';
-import { catchError, concatMap, filter, map, of, switchMap } from 'rxjs';
+import { catchError, concatMap, filter, map, of, switchMap, tap } from 'rxjs';
+import { AuthDocuments } from 'src/app/libs/auth/state/actions/auth.actions';
 import { EnvironmentService } from 'src/app/libs/environment/environment.service';
 import { selectTodoItemFromId } from '..';
+import { WebSocketsService } from '../../services/ws.service';
 import {
   ItemsCommands,
   ItemsDocuments,
@@ -17,6 +19,21 @@ import { TodoItemEntity } from '../reducers/items.reducer';
 export class ItemEffects {
   private readonly url: string;
 
+  startWsWhenThereIsAUser$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(AuthDocuments.user),
+        tap((user) => {
+          if (user.payload) {
+            this.ws.connect();
+          } else {
+            this.ws.disconnect();
+          }
+        })
+      );
+    },
+    { dispatch: false }
+  );
   markTodoComplete$ = createEffect(
     () => {
       return this.actions$.pipe(
@@ -76,7 +93,8 @@ export class ItemEffects {
     private actions$: Actions,
     private client: HttpClient,
     environments: EnvironmentService,
-    private store: Store
+    private store: Store,
+    private ws: WebSocketsService
   ) {
     this.url = environments.bffUrl + 'todos/';
   }

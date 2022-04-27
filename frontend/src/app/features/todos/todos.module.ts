@@ -10,6 +10,7 @@ import { AutoLoginAllRoutesGuard } from 'angular-auth-oidc-client';
 import { TodoEntryComponent } from './components/todo-entry/todo-entry.component';
 import { TodoFilterComponent } from './components/todo-filter/todo-filter.component';
 import { TodoListComponent } from './components/todo-list/todo-list.component';
+import { WebSocketsService } from './services/ws.service';
 import { featureName, reducers } from './state';
 import { ItemEffects } from './state/effects/item.effects';
 import { TodosComponent } from './todos.component';
@@ -38,5 +39,6 @@ const routes: Routes = [
     HttpClientModule,
   ],
   exports: [TodosComponent],
+  providers: [WebSocketsService],
 })
 export class TodosModule {}
